@@ -11,14 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentMigrator.Runner" Version="3.2.6" />
     <PackageReference Include="Nyami.AspNetCore.VueCliServices" Version="3.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-     <!--Don't publish the SPA source files, but do show them in the project files list--> 
-    <!--<Content Remove="$(SpaRoot)**" />
-    <None Remove="$(SpaRoot)**" />
-    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />-->
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +20,10 @@
     <None Remove="..\Blog.Admin\tsconfig.json" />
     <None Remove="..\Blog.Admin\tslint.json" />
     <None Remove="..\Blog.Admin\vue.config.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blog.Persistence\Blog.Persistence.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

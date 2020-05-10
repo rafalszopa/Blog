@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Blog.Configuration.Settings;
+using FluentMigrator.Runner;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
