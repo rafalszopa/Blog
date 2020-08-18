@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Nyami.AspNetCore.VueCliServices;
 using FluentMigrator.Runner;
-using FluentMigrator.Runner.Initialization;
-using Blog.Persistence.Migrations;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Linq;
 using Blog.API.IoC;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using System.Net;
+using Infrastructure.Security.IoC;
 
 namespace Blog
 {
@@ -21,6 +21,8 @@ namespace Blog
         }
         public IConfiguration Configuration { get; }
 
+        public string ConnectionString => Configuration.GetConnectionString("BlogDatabase");
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -29,8 +31,23 @@ namespace Blog
 
             // In production, the Vue files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "../Blog.Admin/dist"; });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddDatabaseMigration(Configuration.GetConnectionString("BlogDatabase"));
+            
+            services
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.Cookie.Name = "Blog.Authentication.Cookie";
+                    options.Events.OnRedirectToLogin = (context) =>
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        return Task.CompletedTask;
+                    };
+                });
+
+            services.AddSecuritServices(this.ConnectionString);
+            services.AddDatabaseMigration(this.ConnectionString);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,8 +67,9 @@ namespace Blog
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+            app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

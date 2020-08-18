@@ -1,17 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App hosted with ASP.NET"/>
-  </div>
+    <div id="app">
+        {{ $store.getters.count }}
+        <img alt="Vue logo" src="./assets/logo.png">
+        <!--<HelloWorld msg="Welcome to Your Vue.js + TypeScript App hosted with ASP.NET"/>-->
+        <div>
+            <p>Menu</p>
+            <ul>
+                <li>
+                    <router-link to="/">Go to home</router-link>
+                </li>
+                <li>
+                    <router-link to="/login">Login</router-link>
+                </li>
+                <li>
+                    <router-link to="/contact">Contact</router-link>
+                </li>
+            </ul>
+        </div>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+    import { Component, Vue } from 'vue-property-decorator';
+    import HelloWorld from './components/HelloWorld.vue';
 
 @Component({
   components: {
-    HelloWorld,
+    //HelloWorld,
   },
 })
 export default class App extends Vue {}
