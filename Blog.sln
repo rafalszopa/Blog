@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{BE35D2C5-DBFE-4B09-BF95-06C073534706}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastucture.Security.Tests", "Infrastucture.Security.Tests\Infrastucture.Security.Tests.csproj", "{C34AB4AE-30C6-4FB1-9325-4C6EA81BCCEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Security.Tests", "Infrastucture.Security.Tests\Infrastructure.Security.Tests.csproj", "{C34AB4AE-30C6-4FB1-9325-4C6EA81BCCEA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Persistence.Tests", "Infrastructure.Persistence.Tests\Infrastructure.Persistence.Tests.csproj", "{8DD5C063-ABC9-4A44-AD59-8632C01DA287}"
 EndProject
