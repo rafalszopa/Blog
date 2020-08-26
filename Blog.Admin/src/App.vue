@@ -1,7 +1,10 @@
 <template>
     <div id="app">
         {{ $store.getters.count }}
-        <img alt="Vue logo" src="./assets/logo.png">
+        <!--<img alt="Vue logo" src="./assets/logo.png">-->
+        <div>
+            <pre>Put component here!</pre>
+        </div>
         <!--<HelloWorld msg="Welcome to Your Vue.js + TypeScript App hosted with ASP.NET"/>-->
         <div>
             <p>Menu</p>
@@ -24,6 +27,7 @@
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
     import HelloWorld from './components/HelloWorld.vue';
+    import AuthenticationService from './services/authentication.service';
 
 @Component({
   components: {

@@ -4,10 +4,10 @@
             First name: {{ $store.user.firstName }}
             Last name: {{ $store.user.lastName }}
         </div>
-        <hr />
+        <hr />-->
         <h1>Contact</h1>
         <pre>{{ this.jsonResponse }}</pre>
-        <hr />-->
+        <hr />
         <div v-if="this.isAuthenticated" style="background: green;">
             Authenticated!
         </div>

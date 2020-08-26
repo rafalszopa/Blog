@@ -22,8 +22,6 @@
         private password: string = '';
         private service: AuthenticationService;
 
-
-
         constructor() {
             super();
             this.login = 'Login';
