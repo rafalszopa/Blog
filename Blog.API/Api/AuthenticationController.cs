@@ -22,9 +22,11 @@ namespace Blog.API.Api
         [HttpPost("login")]
         public async Task<ActionResult<LoginResult>> Login([FromBody] AuthenticationDto authentication)
         {
-            var user = await this.AuthenticationManager.Login(authentication.Email, authentication.Password);
+            var loginResult = await this.AuthenticationManager.Login(authentication.Email, authentication.Password);
 
-            return Ok(user);
+            ActionResult result = loginResult == LoginResult.Ok ? Ok() : (ActionResult)Unauthorized();
+
+            return result;
         }
 
         [HttpPost("logout")]

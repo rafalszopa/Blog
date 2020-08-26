@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System;
+using System.Linq;
 
 namespace Infrastructure.Security.Models
 {
@@ -62,7 +63,12 @@ namespace Infrastructure.Security.Models
 
         public PasswordHash(byte[] passwordHash)
         {
-            this.Bytes = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
+            if (passwordHash?.Any() == false)
+            {
+                throw new ArgumentNullException(nameof(passwordHash));
+            }
+
+            this.Bytes = passwordHash;
 
             if (this.SaltLength != this.Salt.Length)
             {
@@ -135,7 +141,7 @@ namespace Infrastructure.Security.Models
 
         public override int GetHashCode()
         {
-            return this.Bytes.GetHashCode();
+            return this.Subkey.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -170,7 +176,7 @@ namespace Infrastructure.Security.Models
                 return true;
             }
 
-            return AreByteAraysEqual(this.Bytes, other.Bytes);
+            return AreByteAraysEqual(this.Subkey, other.Subkey);
         }
 
         public static bool operator ==(PasswordHash lhs, PasswordHash rhs)

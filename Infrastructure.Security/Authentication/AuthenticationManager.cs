@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Application.Services.Security;
 using Infrastructure.Security.Interfaces;
 using Infrastructure.Security.Authentication;
-using Infrastructure.Security.Models;
 
 namespace Infrastructure.Authentication
 {
@@ -45,15 +44,15 @@ namespace Infrastructure.Authentication
 
             if (user == null)
             {
-                return null;
+                return LoginResult.AccountDoesNotExist;
             }
 
-            var passwordHash = new PasswordHash(Convert.FromBase64String(user.PasswordHash));
+            var passwordHash = Convert.FromBase64String(user.PasswordHash);
             PasswordVerificationResult passwordHasherResult = this.PasswordHasher.VerifyPassword(password, passwordHash);
 
-            if (passwordHasherResult == PasswordVerificationResult.Success)
+            if (passwordHasherResult == PasswordVerificationResult.Failed)
             {
-                return null;
+                return LoginResult.IncorrectPassword;
             }
 
             // sign in
@@ -73,14 +72,16 @@ namespace Infrastructure.Authentication
                 new ClaimsPrincipal(claimsIdentity),
                 new AuthenticationProperties());
 
-            return new LoginResult
-            {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                PasswordHash = user.PasswordHash,
-                Locked = user.Locked,
-                Email = user.Email
-            };
+            return LoginResult.Ok;
+
+            //return new LoginResult
+            //{
+            //    FirstName = user.FirstName,
+            //    LastName = user.LastName,
+            //    PasswordHash = user.PasswordHash,
+            //    Locked = user.Locked,
+            //    Email = user.Email
+            //};
         }
 
         public async Task<LogoutResult> Logout()
