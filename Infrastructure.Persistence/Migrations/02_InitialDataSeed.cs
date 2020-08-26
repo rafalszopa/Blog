@@ -34,7 +34,7 @@ namespace Blog.Persistence.Migrations
                     bio = "John is very experienced .NET developer.",
                     email = "contact@johnsmith.com",
                     phone = "+48 512 000 000",
-                    password_hash = "",
+                    password_hash = "AQAAABAnAAAQAAAAvYTt1XQGI++MGcxR48RCCyzL1HowYZDamc7BdeO/NgnAZdE4tXr26HZMoMcXGxKI", // Admin_123
                     locked = false
                 });
         }
