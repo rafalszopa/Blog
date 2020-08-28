@@ -70,18 +70,13 @@ namespace Infrastructure.Authentication
             await this.HttpContextAccessor.HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity),
-                new AuthenticationProperties());
+                new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(30)
+                });
 
             return LoginResult.Ok;
-
-            //return new LoginResult
-            //{
-            //    FirstName = user.FirstName,
-            //    LastName = user.LastName,
-            //    PasswordHash = user.PasswordHash,
-            //    Locked = user.Locked,
-            //    Email = user.Email
-            //};
         }
 
         public async Task<LogoutResult> Logout()

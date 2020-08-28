@@ -14,7 +14,8 @@ Vue.use(Vuex);
 const store: StoreOptions<ApplicationState> = {
     state: {
         user: undefined,
-        count: 99
+        count: 99,
+        isAuthenticated: false
     },
     getters,
     actions,

@@ -8,8 +8,12 @@ export const mutations: MutationTree<ApplicationState> = {
     },
     userUnloaded(state: ApplicationState) {
         state.user = undefined;
+        state.isAuthenticated = false;
     },
     incrementCounter(state: ApplicationState) {
         state.count++;
+    },
+    userAuthenticated(state: ApplicationState) {
+        state.isAuthenticated = true;
     }
 }

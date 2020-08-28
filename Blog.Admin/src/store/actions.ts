@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ApplicationState } from '../models/ApplicationState';
 import User from '../models/User';
 import AuthenticationService from '../services/authentication.service';
+//import Post from '../models/Post';
 
 export const actions: ActionTree<ApplicationState, any> = {
     login({ commit }, payload): any {
@@ -11,23 +12,17 @@ export const actions: ActionTree<ApplicationState, any> = {
         let email = payload.email;
         let password = payload.password;
 
-        authenticationService
+        return authenticationService
             .login(email, password)
-            .then(
-                (response) => {
-                    const payload: User = response;
-                    commit('userLoaded', payload);
-                },
-                (error) => {
-                    console.log(error);
-                }
-            )
+            .then(response => commit('userAuthenticated', true));
     },
     logout({ commit }): any {
-
         let authenticationService = new AuthenticationService();
         authenticationService
             .logout()
-            .finally(() => commit('userUnloaded'));
-    }
+            .then(() => commit('userUnloaded'));
+    },
+    //getPosts({ commit }): Post {
+    //    return new Post(99, 'Some title', 'Some content');
+    //}
 }

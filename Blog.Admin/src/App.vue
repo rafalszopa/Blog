@@ -1,49 +1,37 @@
 <template>
     <div id="app">
-        {{ $store.getters.count }}
-        <!--<img alt="Vue logo" src="./assets/logo.png">-->
-        <div>
-            <pre>Put component here!</pre>
-        </div>
-        <!--<HelloWorld msg="Welcome to Your Vue.js + TypeScript App hosted with ASP.NET"/>-->
-        <div>
-            <p>Menu</p>
-            <ul>
-                <li>
-                    <router-link to="/">Go to home</router-link>
-                </li>
-                <li>
-                    <router-link to="/login">Login</router-link>
-                </li>
-                <li>
-                    <router-link to="/contact">Contact</router-link>
-                </li>
-            </ul>
-        </div>
-        <router-view></router-view>
+        <component :is="layout">
+            <router-view></router-view>
+        </component>
     </div>
 </template>
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
-    import HelloWorld from './components/HelloWorld.vue';
-    import AuthenticationService from './services/authentication.service';
+    import DefaultLayout from './layouts/Default.vue';
+    import BlankLayout from './layouts/Blank.vue';
+    import { Getter } from 'vuex-class';
+
+    const defaultLayout = 'default';
+
 
 @Component({
   components: {
-    //HelloWorld,
+        DefaultLayout,
+        BlankLayout
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+    get layout() {
+        return (this.$route.meta.layout || defaultLayout) + '-layout';
+    }
+
+    @Getter('isAuthenticated') private isAuthenticated!: boolean
+    created() {
+    }
+
+}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

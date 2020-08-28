@@ -34,16 +34,41 @@
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
-    <Content Include="src\components\Contact.vue" />
-    <Content Include="src\components\HelloWorld.vue" />
     <Content Include="src\components\Login.vue" />
+    <Content Include="src\components\Sidebar.vue">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\components\Topbar.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\layouts\Blank.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\layouts\Default.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\store\getters.ts">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\store\mutations.ts">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\views\CommentsPage.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\views\HomePage.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\views\LoginPage.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\views\PostsPage.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\views\SettingsPage.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\views\UsersPage.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="tsconfig.json" />
@@ -55,8 +80,10 @@
     <Folder Include="public\" />
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
+    <Folder Include="src\assets\css\" />
     <Folder Include="src\components\" />
     <Folder Include="src\models\" />
+    <Folder Include="src\layouts\" />
     <Folder Include="src\services\" />
     <Folder Include="src\views\" />
     <Folder Include="src\router\" />
@@ -74,9 +101,15 @@
     <TypeScriptCompile Include="src\models\ApplicationState.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\models\Post.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\models\User.ts" />
     <TypeScriptCompile Include="src\router\index.ts" />
     <TypeScriptCompile Include="src\services\authentication.service.ts" />
+    <TypeScriptCompile Include="src\services\posts.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\store\actions.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

@@ -12,8 +12,8 @@ export default class AuthenticationService {
 
                 if (response.status !== 200) {
                     console.log(`Response status: ${response.status}`);
-                    //Router.push('/');
                 }
+
                 return response.data;
             });
     }
@@ -24,7 +24,6 @@ export default class AuthenticationService {
 
                 if (response.status !== 200) {
                     console.log(`Response status: ${response.status}`);
-                    //Router.push('/');
                 }
                 return response.data;
             });

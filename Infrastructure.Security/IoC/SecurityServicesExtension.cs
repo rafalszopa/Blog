@@ -8,7 +8,7 @@ namespace Infrastructure.Security.IoC
 {
     public static class SecurityServicesExtension
     {
-        public static void AddSecuritServices(this IServiceCollection services, string connectionString)
+        public static void AddSecurityServices(this IServiceCollection services, string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
             {

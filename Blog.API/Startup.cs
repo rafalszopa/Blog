@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Net;
 using Infrastructure.Security.IoC;
+using System;
 
 namespace Blog
 {
@@ -46,7 +47,7 @@ namespace Blog
                     };
                 });
 
-            services.AddSecuritServices(this.ConnectionString);
+            services.AddSecurityServices(this.ConnectionString);
             services.AddDatabaseMigration(this.ConnectionString);
         }
 
@@ -85,6 +86,7 @@ namespace Blog
                 if (env.IsDevelopment())
                 {
                     spa.UseVueCliServer(npmScript: "serve");
+                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(200);
                 }
             });
 
